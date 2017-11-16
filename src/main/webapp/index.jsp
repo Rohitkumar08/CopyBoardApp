@@ -21,7 +21,7 @@
 <div class="container">
 <center>
 <h2>CopyBoard(Beta)</h2></center><br>
-<form action="SaveDataServlet">
+<form method="post" action="save">
 Enter your custom url : <input type="text" name="custUrl">
 <br><br>
 <textarea rows="8" cols="50" name="message" placeholder="Enter your message here..."></textarea>
