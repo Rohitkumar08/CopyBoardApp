@@ -1,6 +1,8 @@
 package controller;
 
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +37,10 @@ public class DisplayContentController {
 		DBimplementation db = new DBimplementation();
 		String msg =db.getData(url);
 		System.out.println(msg);
-	    return new ModelAndView("middle", "message", msg);
+		Map<String, String> model = new HashMap<String, String>();
+		model.put("name", name);
+		model.put("message", msg);
+	    return new ModelAndView("middle", "model", model);
 	}
 	
 }
