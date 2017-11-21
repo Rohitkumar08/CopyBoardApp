@@ -9,16 +9,18 @@ public class DBimplementation {
 		
 		
 		jd =conn.getConnection();
-		
+		System.out.println("inside Dao");
+		System.out.println(custUrl+"     "+message);
 		jd.hset("messageMapping", custUrl, message);
-		jd.expire("messageMapping", 60);
+		System.out.println("saved data");
+		jd.expire("messageMapping", 180);
 	}
 	
 	public String getData(String key) {
 		
 		jd=conn.getConnection();
 		String message=jd.hget("messageMapping", key);
-		
+	
 		return message;
 	}
 	
