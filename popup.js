@@ -10,21 +10,71 @@ chrome.tabs.executeScript( {
                 console.log(name);
                 console.log(selection[0]);
                 alert(name);
-                 	sendServiceRequest(name, selection[0]);
+                // alert(selection[0]);
+                post('http://1a1d6bfd.ngrok.io/CopyBoardBeta/formSubmit/service', {name: "rohit", content: selection[0]});
+                //sendServiceRequest(name, selection[0]);
+           		//post(name, selection[0]);
             });
 function sendServiceRequest(name, selectedText) {
   
    var xhttp = new XMLHttpRequest();
+   var uri = 'http://1a1d6bfd.ngrok.io/CopyBoardBeta/' + name +'/'+ encodeURIComponent(selectedText);
+   // var res = encodeURIComponent(uri);
+   // var dec= decodeURIComponent(res);
+// alert(uri);
+// alert(dec);
+    xhttp.open('POST', 'http://1a1d6bfd.ngrok.io/CopyBoardBeta/'+ name + '/' +selectedText, true);
+    alert(selectedText);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("uName="+name+"&content="+selectedText);
 
-    xhttp.open('GET', 'http://4932bfdc.ngrok.io/CopyBoardBeta/' + name +'/'+ selectedText, true);
-    xhttp.send();
+
+
 
   //chrome.tabs.create({url: serviceCall});
 }
 function clickHandler(e) {
-    chrome.tabs.create({url: "http://4932bfdc.ngrok.io/CopyBoardBeta/rohit"});
+    chrome.tabs.create({url: "http://1a1d6bfd.ngrok.io/CopyBoardBeta/rohit"});
     window.close(); // Note: window.close(), not this.close()
 }
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('click-me').addEventListener('click', clickHandler);
 });
+
+function post(path, params, method) {
+    method = method || "POST"; // Set method to post by default if not specified
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+    alert(path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            alert(key+" : "+params[key]);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+        }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+    
+
+ //    var formData = new FormData();
+
+	// formData.append("name", name);
+	// formData.append("content", selectedText); // number 123456 is immediately converted to a string "123456"
+
+
+	// var request = new XMLHttpRequest();
+	// request.open("POST", "http://1a1d6bfd.ngrok.io/CopyBoardBeta/formSubmit/service", true);
+	// xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	// request.send(formData);
+
+	alert("form submitted");
+}
+
