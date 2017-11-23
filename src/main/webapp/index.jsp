@@ -128,7 +128,7 @@ function myFunction() {
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar">     
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">How it works</a></li>
+        <li><a href="howItWorks.jsp">How it works</a></li>
       	<!-- <li><a href="#">About us</a></li> -->
       </ul>
     </div><!-- /.navbar-collapse -->

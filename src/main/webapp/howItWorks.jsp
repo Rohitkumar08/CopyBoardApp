@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -138,28 +137,30 @@ function myFunction() {
 
 <div class="container text-center"  style="margin-top:100px;">
 
+<p>
+CopyBoard is a platform for sharing content by generating simple and customized url.<br>
 
+It can be used in two ways:<br>
+<p>
+<h4>1. CopyBoard chrome extension.</h4>
 
-<form method="post" action="save">
- <div class="form-group">
-  <!-- <label for="url">Enter your custom url :</label> -->
-   your custom url(Edit if you want) :<input  type="text" class="text-content" name="custUrl" style="width: 36%;" value="${model.name}">
- </div>
-  <br>
+<p>After installing CopyBoard chrome extension into your browser you can start using it.</p>
+<p>From any web page just select the content you want to share and click the extension icon</p>
+<p>After that left everything upon us..we will do it for you.</p>
+<p>click the share content button to share the content you selected, no need to copy and paste, your content will automatically be pasted to the message box.</p>
+<p>save and share the generated link with any one.</p>
+<p><b>BINGO...!!!! DONE</b></p>
+<h3>OR</h3>
+<p>you can just simply scan the QR code generated from any device and you will have the link to the content.</p>
+</p>
+<p>
 
-<div class="form-group ">
- <textarea id="myInput"  class="textinput text-content" rows="15" cols="70" name="message"><c:out value="${model.message}" /></textarea> 
-</div>
+<h4>2. CopyBoard website.</h4>
 
-
-<div class="form-group">
-
- <input  type="submit" value="save" class ="btn btn-success " style="margin-top: 5px;">
-</div>
-
-</form>
- <button style="margin-top: 5px;" class="btn btn-primary popup" onclick="myFunction()">Copy text
-    <span class="popuptext" id="myPopup">copied!</span></button>
+<p>browse through the URL <a href="http://www.CopyBoardBeta.com">http://www.CopyBoardBeta.com</a></p>
+<p>put the URL name as your friends first name and then enter the content you want to share, hit the submit button and its done share the current url with anyone.</p>
+</p>
+</p>
 
 </div>
 </body>

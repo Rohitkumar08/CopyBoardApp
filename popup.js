@@ -9,9 +9,9 @@ chrome.tabs.executeScript( {
                 var name=document.getElementById("uName").value;
                 console.log(name);
                 console.log(selection[0]);
-                alert(name);
+                //alert(name);
                 // alert(selection[0]);
-                post('http://1a1d6bfd.ngrok.io/CopyBoardBeta/formSubmit/service', {name: "rohit", content: selection[0]});
+                post('http://1a1d6bfd.ngrok.io/CopyBoardBeta/formSubmit/service', {name: name, content: selection[0]});
                 //sendServiceRequest(name, selection[0]);
            		//post(name, selection[0]);
             });
@@ -34,7 +34,8 @@ function sendServiceRequest(name, selectedText) {
   //chrome.tabs.create({url: serviceCall});
 }
 function clickHandler(e) {
-    chrome.tabs.create({url: "http://1a1d6bfd.ngrok.io/CopyBoardBeta/rohit"});
+	var name =document.getElementById("uName").value;
+    chrome.tabs.create({url: "http://1a1d6bfd.ngrok.io/CopyBoardBeta/"+name});
     window.close(); // Note: window.close(), not this.close()
 }
 document.addEventListener('DOMContentLoaded', function() {
@@ -46,14 +47,14 @@ function post(path, params, method) {
     var form = document.createElement("form");
     form.setAttribute("method", method);
     form.setAttribute("action", path);
-    alert(path);
+    //alert(path);
 
     for(var key in params) {
         if(params.hasOwnProperty(key)) {
             var hiddenField = document.createElement("input");
             hiddenField.setAttribute("type", "hidden");
             hiddenField.setAttribute("name", key);
-            alert(key+" : "+params[key]);
+            //alert(key+" : "+params[key]);
             hiddenField.setAttribute("value", params[key]);
 
             form.appendChild(hiddenField);
@@ -75,6 +76,19 @@ function post(path, params, method) {
 	// xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	// request.send(formData);
 
-	alert("form submitted");
+	//alert("form submitted");
 }
+
+function clickHandlerSave(e) {
+	document.getElementById("changeName").value = "Saved";
+	var name=document.getElementById("uName").value;
+    //alert(name);
+	var content=document.getElementById("output").value;
+	//alert(content);
+    post('http://1a1d6bfd.ngrok.io/CopyBoardBeta/formSubmit/service', {name: name, content: content});
+	// Note: window.close(), not this.close()
+}
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('changeName').addEventListener('click', clickHandlerSave);
+});
 

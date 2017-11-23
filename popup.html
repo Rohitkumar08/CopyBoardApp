@@ -1,20 +1,16 @@
-<!-- <!doctype html>
-<html>
-  <head>
-    <title>CopyBoard</title>
-    
-    <script src="./popup.js"></script>
-   
-  </head>
-  <body>
-    <h1>CopyBoard</h1>
-    <button id="click-me">Check this page now!</button>
-  </body>
-</html> -->
-
 <!DOCTYPE html> 
 <html>
 <head>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
   body { width: 300px; }
   textarea { width: 250px; height: 100px;}
@@ -23,8 +19,9 @@
 </head>
 <body>
 <textarea id="output" hidden="true"></textarea>
-UserName: <input type="text" value="rohit" id="uName">
-<button id="click-me">share content now!</button><br><br>
-<a rel='nofollow' href='http://www.qrcode-generator.de' border='0' style='cursor:default'></a><img src='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F1a1d6bfd.ngrok.io%2FCopyBoardBeta%2Frohit&chs=180x180&choe=UTF-8&chld=L|2' alt=''>
+<input type="text" value="show" id="uName">
+<input id="changeName" class="btn btn-primary" value="save" type="submit"><br><br>
+<button id="click-me" class="btn btn-success">share</button><br><br>
+<img src='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F1a1d6bfd.ngrok.io%2FCopyBoardBeta%2Fshow&chs=180x180&choe=UTF-8&chld=L|2' rel='nofollow' alt='qr code'><a href='http://www.qrcode-generator.de' border='0' style='cursor:default'  rel='nofollow'></a>
 </body>
 </html>
