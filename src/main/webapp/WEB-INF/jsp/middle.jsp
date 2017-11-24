@@ -108,10 +108,26 @@ function myFunction() {
       popup.classList.toggle("show");
   }
 
+function access() {
+	var part1='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F35303209.ngrok.io%2FCopyBoardBeta%2F';
+	var part2="${model.name}";
+	
+	var part3 = '&chs=180x180&choe=UTF-8&chld=L|2';
+	var finalsrc=part1+part2+part3;
+	var image=document.getElementById('image');
+	image.src=finalsrc;
+	
+}
+function checkMessage() {
+	var message = document.getElementById("myInput").value;
+	if(message=="")
+	return false;
+}
+
 </script>
 
 </head>
-<body>
+<body onload="access()">
 
 <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
   <div class="container-fluid">
@@ -152,15 +168,22 @@ function myFunction() {
 </div>
 
 
+
 <div class="form-group">
 
- <input  type="submit" value="save" class ="btn btn-success " style="margin-top: 5px;">
+ <input  type="submit" onsubmit="checkMessage()" value="save" class ="btn btn-success " style="margin-top: 5px;">
 </div>
 
 </form>
  <button style="margin-top: 5px;" class="btn btn-primary popup" onclick="myFunction()">Copy text
     <span class="popuptext" id="myPopup">copied!</span></button>
 
+<div class="">
+<h4>scan the QR code and get your link</h4>
+<a rel='nofollow' href='' border='0' style='cursor:default'>
+	<img id="image" src='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F35303209.ngrok.io%2FCopyBoardBeta%2Fshow&chs=180x180&choe=UTF-8&chld=L|2' alt=''>
+</a></div>
 </div>
+
 </body>
 </html>

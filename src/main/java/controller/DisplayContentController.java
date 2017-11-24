@@ -37,10 +37,10 @@ public class DisplayContentController {
 		DBimplementation db = new DBimplementation();
 		String msg =db.getData(url);
 		System.out.println(msg);
-		Map<String, String> model = new HashMap<String, String>();
-		model.put("name", name);
-		model.put("message", msg);
-	    return new ModelAndView("middle", "model", model);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("name", name);
+		map.put("message", msg);
+	    return new ModelAndView("middle", "model", map);
 	}
 	
 }

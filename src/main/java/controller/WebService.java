@@ -16,31 +16,18 @@ public class WebService {
 	
 	
 	@RequestMapping(value="/formSubmit/service",consumes = "application/x-www-form-urlencoded", method=RequestMethod.POST)
-	public void saveCopiedContent(@RequestParam(value="name") String uName, @RequestParam(value="content") String content) {
-		
+	public Boolean saveCopiedContent(@RequestParam(value="name") String uName, @RequestParam(value="content") String content) {
+			if(uName.equals("") || uName.length()<=2) {
+				return false;
+			}
 			System.out.println("inside rest controller");
 			System.out.println(content);
-////			System.out.println(URLDecoder.decode(content));
-//			 content =replacer(content).toString(); 
-//			
-		DBimplementation db = new DBimplementation();
-		String url="http://1a1d6bfd.ngrok.io/CopyBoardBeta/"+uName;
-		db.saveData(content, url);	
-		
+				
+			DBimplementation db = new DBimplementation();
+			String url="http://35303209.ngrok.io/CopyBoardBeta/"+uName;
+			db.saveData(content, url);	
+			return true;
 	}
-	  public static String replacer(String outBuffer) {
-	      String data = outBuffer.toString();
-	      try {
-	         data = data.replaceAll("%(?![0-9a-fA-F]{2})", "%25");
-	         data = data.replaceAll("\\+", "%2B");
-//	         data = URLDecoder.decode(data, "utf-8");
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	      }
-	      return data;
-	   }
-	
-	
 	
 	
 }

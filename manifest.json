@@ -15,8 +15,8 @@
     "activeTab",
     "tabs",
     "http://*/*",
-    "https://*/*"
-   
+    "https://*/*",
+   "storage"
    ]
   
   // "content_security_policy": "script-src 'self' http://41347b80.ngrok.io/CopyBoardBeta/; object-src 'self'"
