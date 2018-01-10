@@ -33,7 +33,7 @@ public class SaveDataController {
 			String backUrl = getURLBase(request)+"/CopyBoardBeta/";
 			return new ModelAndView("redirect:" + backUrl);  
 		}
-		
+		 
 		
 		url=getURLBase(request)+"/CopyBoardBeta/"+url;
 		
@@ -55,6 +55,5 @@ public class SaveDataController {
 	    return requestURL.getProtocol() + "://" + requestURL.getHost() + port;
 
 	}
-	
 	
 }
