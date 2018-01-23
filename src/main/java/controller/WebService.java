@@ -19,9 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import dao.DBimplementation;
-
+ 
 @RestController
 public class WebService {
 	
@@ -35,12 +36,11 @@ public class WebService {
 			System.out.println(content);
 				
 			DBimplementation db = new DBimplementation();
-			String url="http://9682a128.ngrok.io/CopyBoardBeta/"+uName;
+			String url="http://26ca2a28.ngrok.io/CopyBoardBeta/"+uName;
 			db.saveData(content, url);	
 			return true;
 	}
 
-	
 	@RequestMapping(value="/ImageSubmit/save", consumes="application/x-www-form-urlencoded", method= RequestMethod.POST)
 	public String saveImageFile(@RequestParam(value="filepath") String filepath) throws IOException{
 		System.out.println(filepath);
@@ -48,7 +48,6 @@ public class WebService {
 			return null;
 		
 		String base64Image = filepath.split(",")[1];
-		System.out.println("inside rest controller Image "+base64Image);
 		@SuppressWarnings("restriction")
 		BASE64Decoder decoder = new BASE64Decoder();
 		@SuppressWarnings("restriction")
@@ -66,5 +65,34 @@ public class WebService {
 		return "uploaded";
 	}
 	
+	@RequestMapping(value="/ImageSubmit/share", consumes="application/x-www-form-urlencoded", method= RequestMethod.POST)
+	public ModelAndView shareImageFile(@RequestParam(value="filepath") String filepath, @RequestParam(value="name") String name) throws IOException{
+
+		if(filepath.equals(""))
+			return null;
+		
+		
+		System.out.println("inside rest controller");
+		DBimplementation db = new DBimplementation();
+		String url="http://26ca2a28.ngrok.io/CopyBoardBeta/"+name;
+		db.saveData(filepath, url);	
+		String base64Image = filepath.split(",")[1];
+
+		@SuppressWarnings({ "restriction" })
+		BASE64Decoder decoder = new BASE64Decoder();
+		@SuppressWarnings("restriction")
+		byte[] data = decoder.decodeBuffer(base64Image);
+		String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss").format(new Date());
+		
+		try (OutputStream stream = new FileOutputStream("/Users/rohit/eclipse-workspace/CopyBoardBeta/images/"+timeStamp+".png")) {
+			System.out.println("inside output stream");
+		    stream.write(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("exception occurred");
+			}
+
+		return new ModelAndView("redirect:" + url); 
+	}
 	
 }

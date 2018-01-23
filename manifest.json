@@ -4,6 +4,7 @@
   "name": "CopyBoardBeta",
   "description": "send any content using a customized url",
   "version": "1.0",
+  "update_url": "http://www.example.com/update.xml",
 
 
   

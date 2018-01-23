@@ -44,7 +44,7 @@ public class SaveDataController {
 		
 		
 		String msg =db.getData(url);
-		System.out.println(msg);
+	//	System.out.println(msg);
 		
 		 return new ModelAndView("redirect:" + url);  
 	}

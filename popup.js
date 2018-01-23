@@ -1,9 +1,18 @@
 
+chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
+    var url = tabs[0].url;
+    console.log(url);
+    if(url =="chrome://extensions/"){
+    	alert("Not supported in this page for Chrome security reasons");
+    	window.close();
+    }
+    	
+	});
 
-
-chrome.tabs.executeScript( {
+chrome.tabs.executeScript({
 	code: "window.getSelection().toString();"
 }, function(selection) {
+	
 	console.log(selection);
 	document.getElementById("output").innerHTML = selection[0];
 
@@ -11,17 +20,21 @@ chrome.tabs.executeScript( {
 
 	chrome.storage.local.get('userName', function (result) {
 		myname = result.userName;
+		console.log(myname);
+
 		if(typeof(myname) == "undefined")
-			myname="Bot";
+			myname=Math.random().toString(36).substr(2, 5);
+
 			        //alert("stored name is :"+myname);
 			        document.getElementById("uName").value=myname;
-			        var part1='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F9682a128.ngrok.io%2FCopyBoardBeta%2F';
+			        var part1='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F26ca2a28.ngrok.io%2FCopyBoardBeta%2F';
 			        var part2=myname;
 			        var part3 = '&chs=180x180&choe=UTF-8&chld=L|2';
 			        var finalsrc=part1+part2+part3;
 					//alert(finalsrc);
 					document.getElementById("image").src=finalsrc;
 					var name=document.getElementById("uName").value;
+					localStorage.setItem("username", name);
 		               // alert(name);
 		                //alert("name is: "+name);
 		                console.log(name);
@@ -29,19 +42,19 @@ chrome.tabs.executeScript( {
 		                //alert(selection[0]);
 		                //alert(name);
 		                // alert(selection[0]);
-		                post('http://9682a128.ngrok.io/CopyBoardBeta/formSubmit/service', {name: name, content: selection[0]});
+		                post('http://26ca2a28.ngrok.io/CopyBoardBeta/formSubmit/service', {name: name, content: selection[0]});
 		            });
 
 });
 function sendServiceRequest(name, selectedText) {
 
 	var xhttp = new XMLHttpRequest();
-	var uri = 'http://9682a128.ngrok.io/CopyBoardBeta/' + name +'/'+ encodeURIComponent(selectedText);
+	var uri = 'http://26ca2a28.ngrok.io/CopyBoardBeta/' + name +'/'+ encodeURIComponent(selectedText);
    // var res = encodeURIComponent(uri);
    // var dec= decodeURIComponent(res);
 // alert(uri);
 // alert(dec);
-xhttp.open('POST', 'http://9682a128.ngrok.io/CopyBoardBeta/'+ name + '/' +selectedText, true);
+xhttp.open('POST', 'http://26ca2a28.ngrok.io/CopyBoardBeta/'+ name + '/' +selectedText, true);
 alert(selectedText);
 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xhttp.send("uName="+name+"&content="+selectedText);
@@ -52,13 +65,17 @@ xhttp.send("uName="+name+"&content="+selectedText);
   //chrome.tabs.create({url: serviceCall});
 }
 function clickHandler(e) {
-	var name =document.getElementById("uName").value;
+	//var name =document.getElementById("uName").value;
+	var name= localStorage.getItem("username").trim();
+
+
 	if(name=="" || name.length<=2){
 		document.getElementById("errorName").innerHTML="*not valid user name";
 		return false;
 	}
+
 	document.getElementById("errorName").innerHTML="";
-	chrome.tabs.create({url: "http://9682a128.ngrok.io/CopyBoardBeta/"+name});
+	chrome.tabs.create({url: "http://26ca2a28.ngrok.io/CopyBoardBeta/"+name});
     window.close(); // Note: window.close(), not this.close()
 }
 document.addEventListener('DOMContentLoaded', function() {
@@ -107,8 +124,9 @@ function clickHandlerSave(e) {
 	
 
 	//
-	var name=document.getElementById("uName").value;
-	if(name=="" || name.length<=2){
+	var name=document.getElementById("uName").value.trim();
+	var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+	if(name=="" || name.length<=2 || format.test(name)){
 		document.getElementById("errorName").innerHTML="*not valid user name";
 		return false;
 	}
@@ -116,12 +134,13 @@ function clickHandlerSave(e) {
 	document.getElementById("changeName").value = "Saved";
 	
 	chrome.storage.local.set({'userName': name});
-    //alert(name);
+	localStorage.setItem("username", name);
+    console.log(localStorage.getItem('userName'));
     var content=document.getElementById("output").value;
 	//alert(content);
-	post('http://9682a128.ngrok.io/CopyBoardBeta/formSubmit/service', {name: name, content: content});
+	post('http://26ca2a28.ngrok.io/CopyBoardBeta/formSubmit/service', {name: name, content: content});
 
-	var part1='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F9682a128.ngrok.io%2FCopyBoardBeta%2F';
+	var part1='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F26ca2a28.ngrok.io%2FCopyBoardBeta%2F';
 	var part2=name;
 	var part3 = '&chs=180x180&choe=UTF-8&chld=L|2';
 	var finalsrc=part1+part2+part3;
@@ -155,7 +174,7 @@ function convertURIToImageData(URI) {
     }, false);
     image.src = URI;
    // console.log(image.src);
-  //  post('http://9682a128.ngrok.io/CopyBoardBeta/ImageSubmit/save', {filepath : image.src});
+  //  post('http://26ca2a28.ngrok.io/CopyBoardBeta/ImageSubmit/save', {filepath : image.src});
     console.log("after image");
 
   });
@@ -169,7 +188,14 @@ function convertURIToImageData(URI) {
 
 function clickHandlerCapture(e){
 	console.log("inside func");
-
+	// var name=document.getElementById("uName").value.trim();
+	var name=localStorage.getItem("username");
+	//var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+	console.log(name);
+	if(name=="" || name.length<=2 || (typeof(name) == "undefined") ){
+		document.getElementById("errorName").innerHTML="*not valid user name";
+		return false;
+	}
         chrome.tabs.captureVisibleTab(null, {"format": "png"}, function(dataUrl) {
 
         	console.log("before calling data");
@@ -179,6 +205,7 @@ function clickHandlerCapture(e){
 			image.src = dataUrl;
 			//console.log("main"+image.src);
 			localStorage.setItem("imageSrc", image.src);
+
 			console.log(localStorage.getItem("imageSrc"));
 		chrome.tabs.create({url : "openScreen.html"});
 			var url = image.src.replace(/^data:image\/[^;]+/, 'data:application/octet-stream');
@@ -242,6 +269,3 @@ function saveImage(path, method) {
 
 }
 
-
-
-24

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,6 +23,10 @@ body{
 background-color: white;
 }
 
+#divActivites{
+border:1px solid black;
+
+}
 .textinput {
 width: 50%;
 min-height: 75px;
@@ -109,7 +114,7 @@ function myFunction() {
   }
 
 function access() {
-	var part1='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2Ffc783545.ngrok.io%2FCopyBoardBeta%2F';
+	var part1='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F26ca2a28.ngrok.io%2FCopyBoardBeta%2F';
 	var part2="${model.name}";
 	
 	var part3 = '&chs=180x180&choe=UTF-8&chld=L|2';
@@ -164,24 +169,42 @@ function checkMessage() {
   <br>
 
 <div class="form-group ">
- <textarea id="myInput"  class="textinput text-content" rows="15" cols="70" name="message"><c:out value="${model.message}" /></textarea> 
+ <c:set var = "theString" value = "${model.message}"/>
+ <c:choose>
+  <c:when test = "${fn:contains(theString, 'image/png')}">
+   <img id="myInput" name="message" src="<c:url value="${model.message}"/>" width="800" height="500" />
+  </c:when>
+  <c:otherwise>
+           <textarea id="myInput"  class="textinput text-content" rows="15" cols="70" name="message"><c:out value="${model.message}" /></textarea> 
+	</c:otherwise>
+</c:choose>
+  
 </div>
 
 
 
 <div class="form-group">
-
- <input  type="submit" onsubmit="checkMessage()" value="save" class ="btn btn-success " style="margin-top: 5px;">
+<c:set var = "theString" value = "${model.message}"/>
+ <c:choose>
+  <c:when test = "${fn:contains(theString, 'image/png')}">
+  </c:when>
+  <c:otherwise>
+	<input  type="submit" onsubmit="checkMessage()" value="save" class ="btn btn-success " style="margin-top: 5px;">
+	<button style="margin-top: 5px;" class="btn btn-primary popup" onclick="myFunction()">Copy text
+    <span class="popuptext" id="myPopup">copied!</span></button>
+</c:otherwise>
+</c:choose>
 </div>
 
 </form>
- <button style="margin-top: 5px;" class="btn btn-primary popup" onclick="myFunction()">Copy text
-    <span class="popuptext" id="myPopup">copied!</span></button>
-
 <div class="">
+<div id="divActivites">
+    
+</div> 
+
 <h4>scan the QR code and get your link</h4>
 <a rel='nofollow' href='' border='0' style='cursor:default'>
-	<img id="image" src='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2Ffc783545.ngrok.io%2FCopyBoardBeta%2Fshow&chs=180x180&choe=UTF-8&chld=L|2' alt=''>
+	<img id="image" src='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F26ca2a28.ngrok.io%2FCopyBoardBeta%2Fshow&chs=180x180&choe=UTF-8&chld=L|2' alt=''>
 </a></div>
 </div>
 
