@@ -27,7 +27,7 @@ chrome.tabs.executeScript({
 
 			        //alert("stored name is :"+myname);
 			        document.getElementById("uName").value=myname;
-			        var part1='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F26ca2a28.ngrok.io%2FCopyBoardBeta%2F';
+			        var part1='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F37504fe8.ngrok.io%2FCopyBoardBeta%2F';
 			        var part2=myname;
 			        var part3 = '&chs=180x180&choe=UTF-8&chld=L|2';
 			        var finalsrc=part1+part2+part3;
@@ -42,19 +42,19 @@ chrome.tabs.executeScript({
 		                //alert(selection[0]);
 		                //alert(name);
 		                // alert(selection[0]);
-		                post('http://26ca2a28.ngrok.io/CopyBoardBeta/formSubmit/service', {name: name, content: selection[0]});
+		                post('http://37504fe8.ngrok.io/CopyBoardBeta/formSubmit/service', {name: name, content: selection[0]});
 		            });
 
 });
 function sendServiceRequest(name, selectedText) {
 
 	var xhttp = new XMLHttpRequest();
-	var uri = 'http://26ca2a28.ngrok.io/CopyBoardBeta/' + name +'/'+ encodeURIComponent(selectedText);
+	var uri = 'http://37504fe8.ngrok.io/CopyBoardBeta/' + name +'/'+ encodeURIComponent(selectedText);
    // var res = encodeURIComponent(uri);
    // var dec= decodeURIComponent(res);
 // alert(uri);
 // alert(dec);
-xhttp.open('POST', 'http://26ca2a28.ngrok.io/CopyBoardBeta/'+ name + '/' +selectedText, true);
+xhttp.open('POST', 'http://37504fe8.ngrok.io/CopyBoardBeta/'+ name + '/' +selectedText, true);
 alert(selectedText);
 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xhttp.send("uName="+name+"&content="+selectedText);
@@ -75,7 +75,7 @@ function clickHandler(e) {
 	}
 
 	document.getElementById("errorName").innerHTML="";
-	chrome.tabs.create({url: "http://26ca2a28.ngrok.io/CopyBoardBeta/"+name});
+	chrome.tabs.create({url: "http://37504fe8.ngrok.io/CopyBoardBeta/"+name});
     window.close(); // Note: window.close(), not this.close()
 }
 document.addEventListener('DOMContentLoaded', function() {
@@ -138,9 +138,9 @@ function clickHandlerSave(e) {
     console.log(localStorage.getItem('userName'));
     var content=document.getElementById("output").value;
 	//alert(content);
-	post('http://26ca2a28.ngrok.io/CopyBoardBeta/formSubmit/service', {name: name, content: content});
+	post('http://37504fe8.ngrok.io/CopyBoardBeta/formSubmit/service', {name: name, content: content});
 
-	var part1='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F26ca2a28.ngrok.io%2FCopyBoardBeta%2F';
+	var part1='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F37504fe8.ngrok.io%2FCopyBoardBeta%2F';
 	var part2=name;
 	var part3 = '&chs=180x180&choe=UTF-8&chld=L|2';
 	var finalsrc=part1+part2+part3;
@@ -174,7 +174,7 @@ function convertURIToImageData(URI) {
     }, false);
     image.src = URI;
    // console.log(image.src);
-  //  post('http://26ca2a28.ngrok.io/CopyBoardBeta/ImageSubmit/save', {filepath : image.src});
+  //  post('http://37504fe8.ngrok.io/CopyBoardBeta/ImageSubmit/save', {filepath : image.src});
     console.log("after image");
 
   });

@@ -5,7 +5,7 @@ import redis.clients.jedis.Jedis;
 
 public class DBConnection {
 
-	public static Jedis getConnection() {
+	public Jedis getConnection() {
 		
 		Jedis jedis = new Jedis("localhost");
 		

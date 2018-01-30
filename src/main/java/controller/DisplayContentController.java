@@ -33,14 +33,13 @@ public class DisplayContentController {
 		URI uri = uriComponents.encode().toUri();
 		String url = uri.toString();
 		System.out.println("inside Display controller");
-		//System.out.println(url);
 		DBimplementation db = new DBimplementation();
-		String msg =db.getData(url);
-		//System.out.println(msg);
+			String msg =db.getData(url);
+		
+		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("name", name);
 		map.put("message", msg);
-		//System.out.println(map);
 	    return new ModelAndView("middle", "model", map);
 	}
 	

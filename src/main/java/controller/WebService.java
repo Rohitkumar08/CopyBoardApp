@@ -28,17 +28,17 @@ public class WebService {
 	
 	
 	@RequestMapping(value="/formSubmit/service",consumes = "application/x-www-form-urlencoded", method=RequestMethod.POST)
-	public Boolean saveCopiedContent(@RequestParam(value="name") String uName, @RequestParam(value="content") String content) {
+	public String saveCopiedContent(@RequestParam(value="name") String uName, @RequestParam(value="content") String content) {
 			if(uName.equals("") || uName.length()<=2) {
-				return false;
+				return "";
 			}
 			System.out.println("inside rest controller");
 			System.out.println(content);
 				
 			DBimplementation db = new DBimplementation();
-			String url="http://26ca2a28.ngrok.io/CopyBoardBeta/"+uName;
+			String url="http://37504fe8.ngrok.io/CopyBoardBeta/"+uName;
 			db.saveData(content, url);	
-			return true;
+			return "";
 	}
 
 	@RequestMapping(value="/ImageSubmit/save", consumes="application/x-www-form-urlencoded", method= RequestMethod.POST)
@@ -72,9 +72,9 @@ public class WebService {
 			return null;
 		
 		
-		System.out.println("inside rest controller");
+		System.out.println("inside /ImageSubmit/share");
 		DBimplementation db = new DBimplementation();
-		String url="http://26ca2a28.ngrok.io/CopyBoardBeta/"+name;
+		String url="http://37504fe8.ngrok.io/CopyBoardBeta/"+name;
 		db.saveData(filepath, url);	
 		String base64Image = filepath.split(",")[1];
 
