@@ -13,7 +13,7 @@
     "default_popup": "popup.html"
   },
   
-  "description": "",
+  "description" : "",
 
   "content_scripts": [
     {

@@ -17,6 +17,9 @@ border:1px solid black;
 .buttons{
 text-align: center;
 }
+#div2{
+	display: none;
+}
 </style>
 </head>
 <body>
@@ -26,7 +29,20 @@ text-align: center;
     
 </div> 
 	<br>
+
+
 	<div class="buttons">
+		<div id ="errorName" style="color: red;">
+		</div>
+		<input type="checkbox" id="expiration"/>set expiration time(in seconds)
+		<div id="div2">
+		          <input type="text"  id="time" name="time"  value="180">
+		         <p> *click save button to save<p>
+		</div>
+		<br>
+
+
+
 	<button id="btnSave" class="btn btn-success">save</button>
 	<button id="btnDownload" class="btn btn-success">download</button>
 		<button id="btnShare" class="btn btn-success">share</button>	

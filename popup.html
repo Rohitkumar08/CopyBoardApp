@@ -28,6 +28,9 @@
   .buttons{
   	text-align: center;
   }
+  #div2{
+    display:none;
+  }
 </style>
 </head>
 <body>
@@ -37,6 +40,29 @@ User Name: <input type="text"  id="uName" minlength="3"><br><br>
 <div class="buttons">
 	<div id ="errorName" style="color: red;">
 </div>
+
+
+
+
+<!-- <button id="expiration">  </button> -->
+<input type="checkbox" id="expiration"/>set expiration time(in Seconds)
+<div id="div2">
+          <input type="text"  id="time" name="time" placeholder="Enter time in seconds" value="180">
+         <p> *click save button to save<p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
 <input id="changeName" class="btn btn-primary" value="save" type="submit">
 
 
@@ -45,7 +71,7 @@ User Name: <input type="text"  id="uName" minlength="3"><br><br>
 <h3 style="text-align: center;">OR</h3>
 <h4 style="text-align: center;">Scan the QR code to get the link</h4>
 <a  style="text-align: center;" rel='nofollow' href='http://www.qrcode-generator.de' border='0' style='cursor:default'>
-	<img id="image" src='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F37504fe8.ngrok.io%2FCopyBoardBeta%2Fshow&chs=180x180&choe=UTF-8&chld=L|2' alt=''>
+	<img id="image" src='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F23e94283.ngrok.io%2FCopyBoardBeta%2Fshow&chs=180x180&choe=UTF-8&chld=L|2' alt=''>
 </a>
 <div>
 	<button id="btnCapture" class="btn btn-success">take screenshot</button><br><br>

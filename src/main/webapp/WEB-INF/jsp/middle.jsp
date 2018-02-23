@@ -100,7 +100,9 @@ margin-left:-159px;
     to {opacity:1 ;}
 }
 
-
+#div2{
+    display:none;
+  }
 
 </style>
 
@@ -114,7 +116,7 @@ function myFunction() {
   }
 
 function access() {
-	var part1='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F37504fe8.ngrok.io%2FCopyBoardBeta%2F';
+	var part1='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F23e94283.ngrok.io%2FCopyBoardBeta%2F';
 	var part2="${model.name}";
 	
 	var part3 = '&chs=180x180&choe=UTF-8&chld=L|2';
@@ -125,8 +127,22 @@ function access() {
 }
 function checkMessage() {
 	var message = document.getElementById("myInput").value;
-	if(message=="")
+	var name= document.getElementById("name").value;
+	console.log(name+" "+message);
+	if(message==="")
 	return false;
+}
+
+function clickHandlerExpiration(){
+	console.log("inside expiration time window");
+	var x = document.getElementById("div2");
+	console.log(x.style.display);
+    if (x.style.display == "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+
 }
 
 </script>
@@ -161,10 +177,10 @@ function checkMessage() {
 
 
 
-<form method="post" action="save">
+<form method="post" action="save" >
  <div class="form-group">
   <!-- <label for="url">Enter your custom url :</label> -->
-   your custom url(Edit if you want) :<input  type="text" class="text-content" name="custUrl" style="width: 36%;" value="${model.name}">
+   your custom url(Edit if you want) :<input  type="text" class="text-content" id="name" name="custUrl" style="width: 36%;" value="${model.name}">
  </div>
   <br>
 
@@ -175,6 +191,7 @@ function checkMessage() {
    <img id="myInput" name="message" src="<c:url value="${model.message}"/>" width="800" height="500" />
   </c:when>
   <c:otherwise>
+  			<div id = "errorName"></div>
            <textarea id="myInput"  class="textinput text-content" rows="15" cols="70" name="message"><c:out value="${model.message}" /></textarea> 
 	</c:otherwise>
 </c:choose>
@@ -189,8 +206,14 @@ function checkMessage() {
   <c:when test = "${fn:contains(theString, 'image/png')}">
   </c:when>
   <c:otherwise>
-	<input  type="submit" onsubmit="checkMessage()" value="save" class ="btn btn-success " style="margin-top: 5px;">
-	<button style="margin-top: 5px;" class="btn btn-primary popup" onclick="myFunction()">Copy text
+		<input type="checkbox" id="expiration" name="check" onclick="clickHandlerExpiration()"/>set expiration time(in seconds)
+		<div id="div2">
+		          <input type="text"  id="time" name="time"  value="180">
+		         <p> *click save button to save<p>
+		</div>
+		<br>
+	<input  type="submit" onclick="checkMessage()" value="save" class ="btn btn-success " style="margin-top: 5px;">
+	<button type="button" style="margin-top: 5px;" class="btn btn-primary popup" onclick="myFunction()">Copy text
     <span class="popuptext" id="myPopup">copied!</span></button>
 </c:otherwise>
 </c:choose>
@@ -204,7 +227,7 @@ function checkMessage() {
 
 <h4>scan the QR code and get your link</h4>
 <a rel='nofollow' href='' border='0' style='cursor:default'>
-	<img id="image" src='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F37504fe8.ngrok.io%2FCopyBoardBeta%2Fshow&chs=180x180&choe=UTF-8&chld=L|2' alt=''>
+	<img id="image" src='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F23e94283.ngrok.io%2FCopyBoardBeta%2Fshow&chs=180x180&choe=UTF-8&chld=L|2' alt=''>
 </a></div>
 </div>
 

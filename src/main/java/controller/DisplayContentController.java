@@ -35,7 +35,7 @@ public class DisplayContentController {
 		System.out.println("inside Display controller");
 		DBimplementation db = new DBimplementation();
 			String msg =db.getData(url);
-		
+			System.out.println("getting data from db:   "+msg);
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("name", name);

@@ -36,7 +36,8 @@ public class SaveDataServlet extends HttpServlet {
 		String custUrl=request.getParameter("custUrl");
 		
 		DBimplementation db = new DBimplementation();
-		db.saveData(message, custUrl);
+		int time=180;
+		db.saveData(message, custUrl, time);
 		request.setAttribute("url", custUrl);
 		RequestDispatcher rd = request.getRequestDispatcher("saved.jsp");
 		rd.forward(request, response);

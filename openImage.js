@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function clickHandlerSave(e) {
 	var x= localStorage.getItem("imageSrc");
-	post('http://37504fe8.ngrok.io/CopyBoardBeta/ImageSubmit/save', {filepath : x});
+	post('http://23e94283.ngrok.io/CopyBoardBeta/ImageSubmit/save', {filepath : x});
 }
 
 function post(path, params, method) {
@@ -62,7 +62,19 @@ function clickHandlerShare(e) {
     var x= localStorage.getItem("imageSrc");
     var y = localStorage.getItem("username");
     console.log(y);
-    post('http://37504fe8.ngrok.io/CopyBoardBeta/ImageSubmit/share', {filepath : x, name: y});
+     var expiration = document.getElementById("expiration");
+    
+    var time= 180;
+    if(expiration.checked){
+        console.log("expiration time: "+expiration);
+        console.log("checkbox is checked");
+        time= document.getElementById("time").value;
+        if(time<59){
+            document.getElementById("errorName").innerHTML="*time must be minimum 60 sec";
+            return false;
+        }
+    }
+    post('http://23e94283.ngrok.io/CopyBoardBeta/ImageSubmit/share', {filepath : x, name: y, time: time});
 }
 
 function post(path, params, method) {
@@ -93,3 +105,30 @@ function post(path, params, method) {
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('btnShare').addEventListener('click', clickHandlerShare);
 });
+
+
+
+
+
+
+
+function clickHandlerExpiration(e){
+    console.log("inside expiration time window");
+    var x = document.getElementById("div2");
+    console.log(x.style.display);
+    if (x.style.display == "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('expiration').addEventListener('click', clickHandlerExpiration);
+});
+
+
+
+
+
