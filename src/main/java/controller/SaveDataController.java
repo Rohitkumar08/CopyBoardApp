@@ -3,12 +3,12 @@ package controller;
 import java.net.MalformedURLException;
 
 import java.net.URL;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.impl.Log4JLogger;
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.util.StringUtils;
@@ -23,7 +23,7 @@ import dao.DBimplementation;
 @Controller
 public class SaveDataController {
 
-	final static Logger logger = Logger.getLogger(SaveDataController.class);
+	final static Logger logger = Loggers.getLogger(SaveDataController.class);
 	
 	@RequestMapping("/save")
 	public ModelAndView saveData(HttpServletRequest request,HttpServletResponse res) throws MalformedURLException {

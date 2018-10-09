@@ -27,7 +27,7 @@ chrome.tabs.executeScript({
 
 			        //alert("stored name is :"+myname);
 			        document.getElementById("uName").value=myname;
-			        var part1='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F23e94283.ngrok.io%2FCopyBoardBeta%2F';
+			        var part1='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F9a446f81.ngrok.io%2FCopyBoardBeta%2F';
 			        var part2=myname;
 			        var part3 = '&chs=180x180&choe=UTF-8&chld=L|2';
 			        var finalsrc=part1+part2+part3;
@@ -45,19 +45,19 @@ chrome.tabs.executeScript({
 		               
 		                var time= 180;
 		                
-		     			post('http://23e94283.ngrok.io/CopyBoardBeta/formSubmit/service', {name: name, content: selection[0],time: time});
+		     			post('http://9a446f81.ngrok.io/CopyBoardBeta/formSubmit/service', {name: name, content: selection[0],time: time});
     });
 
 });
 function sendServiceRequest(name, selectedText) {
 
 	var xhttp = new XMLHttpRequest();
-	var uri = 'http://23e94283.ngrok.io/CopyBoardBeta/' + name +'/'+ encodeURIComponent(selectedText);
+	var uri = 'http://9a446f81.ngrok.io/CopyBoardBeta/' + name +'/'+ encodeURIComponent(selectedText);
    // var res = encodeURIComponent(uri);
    // var dec= decodeURIComponent(res);
 // alert(uri);
 // alert(dec);
-xhttp.open('POST', 'http://23e94283.ngrok.io/CopyBoardBeta/'+ name + '/' +selectedText, true);
+xhttp.open('POST', 'http://9a446f81.ngrok.io/CopyBoardBeta/'+ name + '/' +selectedText, true);
 alert(selectedText);
 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xhttp.send("uName="+name+"&content="+selectedText);
@@ -78,7 +78,7 @@ function clickHandler(e) {
 	}
 
 	document.getElementById("errorName").innerHTML="";
-	chrome.tabs.create({url: "http://23e94283.ngrok.io/CopyBoardBeta/"+name});
+	chrome.tabs.create({url: "http://9a446f81.ngrok.io/CopyBoardBeta/"+name});
     window.close(); // Note: window.close(), not this.close()
 }
 document.addEventListener('DOMContentLoaded', function() {
@@ -158,9 +158,9 @@ function clickHandlerSave(e) {
 
 
 
-	post('http://23e94283.ngrok.io/CopyBoardBeta/formSubmit/service', {name: name, content: content, time:time});
+	post('http://9a446f81.ngrok.io/CopyBoardBeta/formSubmit/service', {name: name, content: content, time:time});
 
-	var part1='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F23e94283.ngrok.io%2FCopyBoardBeta%2F';
+	var part1='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F9a446f81.ngrok.io%2FCopyBoardBeta%2F';
 	var part2=name;
 	var part3 = '&chs=180x180&choe=UTF-8&chld=L|2';
 	var finalsrc=part1+part2+part3;
@@ -194,7 +194,7 @@ function convertURIToImageData(URI) {
     }, false);
     image.src = URI;
    // console.log(image.src);
-  //  post('http://23e94283.ngrok.io/CopyBoardBeta/ImageSubmit/save', {filepath : image.src});
+  //  post('http://9a446f81.ngrok.io/CopyBoardBeta/ImageSubmit/save', {filepath : image.src});
     console.log("after image");
 
   });

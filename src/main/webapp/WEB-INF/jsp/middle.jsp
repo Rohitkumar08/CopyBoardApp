@@ -116,7 +116,7 @@ function myFunction() {
   }
 
 function access() {
-	var part1='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F23e94283.ngrok.io%2FCopyBoardBeta%2F';
+	var part1='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F9a446f81.ngrok.io%2FCopyBoardBeta%2F';
 	var part2="${model.name}";
 	
 	var part3 = '&chs=180x180&choe=UTF-8&chld=L|2';
@@ -227,7 +227,7 @@ function clickHandlerExpiration(){
 
 <h4>scan the QR code and get your link</h4>
 <a rel='nofollow' href='' border='0' style='cursor:default'>
-	<img id="image" src='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F23e94283.ngrok.io%2FCopyBoardBeta%2Fshow&chs=180x180&choe=UTF-8&chld=L|2' alt=''>
+	<img id="image" src='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F9a446f81.ngrok.io%2FCopyBoardBeta%2Fshow&chs=180x180&choe=UTF-8&chld=L|2' alt=''>
 </a></div>
 </div>
 

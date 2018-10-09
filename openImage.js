@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function clickHandlerSave(e) {
 	var x= localStorage.getItem("imageSrc");
-	post('http://23e94283.ngrok.io/CopyBoardBeta/ImageSubmit/save', {filepath : x});
+	post('http://9a446f81.ngrok.io/CopyBoardBeta/ImageSubmit/save', {filepath : x});
 }
 
 function post(path, params, method) {
@@ -74,7 +74,7 @@ function clickHandlerShare(e) {
             return false;
         }
     }
-    post('http://23e94283.ngrok.io/CopyBoardBeta/ImageSubmit/share', {filepath : x, name: y, time: time});
+    post('http://9a446f81.ngrok.io/CopyBoardBeta/ImageSubmit/share', {filepath : x, name: y, time: time});
 }
 
 function post(path, params, method) {

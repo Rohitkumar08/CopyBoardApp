@@ -1,5 +1,9 @@
-Servlet/SaveDataServlet.class
-controller/DisplayContentController.class
-dao/DBConnection.class
-controller/SaveDataController.class
-dao/DBimplementation.class
+controller\DisplayContentController.class
+dao\DBConnection.class
+Servlet\SaveDataServlet.class
+controller\SaveDataController.class
+controller\WebService.class
+dao\DBimplementation.class
+practise.class
+controller\Loggers.class
+model\Content.class

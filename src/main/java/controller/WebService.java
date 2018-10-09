@@ -8,13 +8,13 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
 import sun.misc.BASE64Decoder;
 
 import org.apache.commons.logging.impl.Log4JLogger;
-import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,8 +25,8 @@ import dao.DBimplementation;
  
 @RestController
 public class WebService {
-	final static Logger logger = Logger.getLogger(WebService.class);
-	
+	final static Logger logger = Loggers.getLogger(WebService.class);
+
 	@RequestMapping(value="/formSubmit/service",consumes = "application/x-www-form-urlencoded", method=RequestMethod.POST)
 	public String saveCopiedContent(@RequestParam(value="name") String uName, @RequestParam(value="content") String content, @RequestParam(value="time") int time, HttpServletRequest request) {
 			if(uName.equals("") || uName.length()<=2) {
@@ -35,7 +35,7 @@ public class WebService {
 			System.out.println("inside rest controller");
 			System.out.println(content+"   "+time);
 			DBimplementation db = new DBimplementation();
-			String url="http://23e94283.ngrok.io/CopyBoardBeta/"+uName;
+			String url="http://9a446f81.ngrok.io/CopyBoardBeta/"+uName;
 			String ip=null;
 			String getWay = request.getHeader("VIA");   // Gateway
 			ip = request.getHeader("X-FORWARDED-FOR");   // proxy
@@ -44,9 +44,9 @@ public class WebService {
 			    ip = request.getRemoteAddr();
 			}
 			System.out.println(ip);
-			
+
 			logger.info("name: "+uName+ ","+ " message:  "+content+ ","+ " IP:  "+ ip);
-			
+
 			db.saveData(content, url, time);	
 			return "";
 	}
@@ -82,7 +82,7 @@ public class WebService {
 			return null;
 		System.out.println("inside /ImageSubmit/share");
 		DBimplementation db = new DBimplementation();
-		String url="http://23e94283.ngrok.io/CopyBoardBeta/"+name;
+		String url="http://9a446f81.ngrok.io/CopyBoardBeta/"+name;
 		db.saveData(filepath, url,time);	
 		String base64Image = filepath.split(",")[1];
 
